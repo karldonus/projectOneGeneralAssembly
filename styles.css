@@ -30,7 +30,7 @@ ul {
 }
 
 .site-nav {
-  background-color: #6C9A74;
+  background-image: url(greenFelt.jpg);
   border: .8em solid black;
   border-radius: 1em;
   font-size: 1em;
@@ -67,7 +67,7 @@ ul {
 }
 
 .tableSurface {
-  background-color: #6C9A74;
+  background-image: url(greenFelt.jpg);
   border: .8em solid black;
   border-radius: 1em;
   margin: 0 auto;
@@ -77,8 +77,19 @@ ul {
 }
 
 .dealerSpace {
-  background-color: #6C9A74;
-  height: 550px;
+  background-image: url(greenFelt.jpg);
+  border: .5em solid white;
+  border-radius: .5em;
+  height: 200px;
+  margin: .5em .5em .5em .5em;
+}
+
+.playerSpace {
+  background-image: url(greenFelt.jpg);
+  border: .5em solid red;
+  border-radius: .5em;
+  height: 200px;
+  margin: .5em .5em .5em .5em;
 }
 
 .playerOptions {
