@@ -70,8 +70,8 @@ var els = {
         playerCardCount: 2,
         playerTotal    : 0,
         dealerTotal    : 0,
-        dealerDummy    : 0,
 };
+
 //Loan Shark Mod
 var loanShark = function () {
     if (els.wagerDisplay > els.chipDisplay) {
@@ -170,18 +170,7 @@ var checkWinner = function () {
           $("#chipCount").html("Chip Count: " + els.chipDisplay);
           $("#wager").html("Wager: " + els.wagerDisplay);
 }
-  //looses
-    else if (els.playerTotal <= 21 && els.playerTotal < els.dealerTotal) {
-          if (els.chipCount < 0) {
-                alert("Oh No! You Lost. Loan Shark Tony Broke Your Legs. Here's the Gambling Addiction Hotline: 1-800-522-4700.");
-                els.wagerDisplay = 0;
-                $("#wager").html("Wager: " + els.wagerDisplay);
-}
-          else if (els.chipCount >= 0) {
-                alert("Oh No! You Lost. Play Another Hand.");
-                els.wagerDisplay = 0;
-                $("#wager").html("Wager: " + els.wagerDisplay);
-}}
+
   //tie
     else if (els.playerTotal <= 21 && els.playerTotal === els.dealerTotal) {
           alert("A tie! Play Another Hand.");
@@ -189,6 +178,20 @@ var checkWinner = function () {
           els.wagerDisplay = 0;
           $("#chipCount").html("Chip Count :  " + els.chipDisplay);
           $("#wager").html("Wager :  " + els.wagerDisplay);
+}
+
+//looses
+  else if (els.playerTotal < 21 && els.playerTotal < els.dealerTotal) {
+          if (els.chipDisplay < 0) {
+              alert("Oh No! You Lost. Loan Shark Tony Broke Your Legs. Here's the Gambling Addiction Hotline: 1-800-522-4700.");
+              els.wagerDisplay = 0;
+              $("#wager").html("Wager: " + els.wagerDisplay);
+}
+          else if (els.chipDisplay >= 0) {
+                alert("Oh No! You Lost. Play Another Hand.");
+                els.wagerDisplay = 0;
+                $("#wager").html("Wager: " + els.wagerDisplay);
+}
 }};
 
 //Check Bust
@@ -208,7 +211,7 @@ var checkBust = function () {
 var deal = function () {
     //Player Dealt -- Need to go back in later to replace deck.ca/etc with randm
     $(".playerSpace").append("<div></div>");
-    $(".playerSpace").children().eq(0).html(deck.c4);
+    $(".playerSpace").children().eq(0).html(deck.c3);
     $(".playerSpace").append("<div></div>");
     $(".playerSpace").children().eq(1).html(deck.c2);
     $(".playerHand").append("<div></div>");
@@ -218,7 +221,7 @@ var deal = function () {
     $(".dealerSpace").append("<div></div>");
     $(".dealerSpace").children().eq(0).html("???");
     $(".dealerSpace").append("<div></div>");
-    $(".dealerSpace").children().eq(1).html(deck.h2);
+    $(".dealerSpace").children().eq(1).html(deck.h4);
     $(".dealerHand").append("<div></div>");
         calcDealerTotal();
             $(".dealerHand").children().eq(0).html("Dealer Total Shown :  " + els.dealerTotal);
