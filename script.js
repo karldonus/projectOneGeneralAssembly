@@ -72,6 +72,12 @@ var els = {
         dealerTotal    : 0,
 };
 
+//Trying to Resolve Chrome Console Issue
+var checker = function () {
+  console.log("hello");
+};
+console.log(typeof (els.chipDisplay));
+
 //Loan Shark Mod
 var loanShark = function () {
     if (els.wagerDisplay > els.chipDisplay) {
@@ -148,6 +154,7 @@ var blackJack = function () {
           els.wagerDisplay = 0;
           $("#chipCount").html("Chip Count: " + els.chipDisplay);
           $("#wager").html("Wager: " + els.wagerDisplay);
+                    //reshuffle();
 }};
 
 //Check If Winner or Bust at END
@@ -160,6 +167,7 @@ var checkWinner = function () {
           els.wagerDisplay = 0;
           $("#chipCount").html("Chip Count: " + els.chipDisplay);
           $("#wager").html("Wager: " + els.wagerDisplay);
+                    //reshuffle();
 }
     //wins - 2nd case
     else if (els.dealerTotal > 21) {
@@ -169,6 +177,7 @@ var checkWinner = function () {
           els.wagerDisplay = 0;
           $("#chipCount").html("Chip Count: " + els.chipDisplay);
           $("#wager").html("Wager: " + els.wagerDisplay);
+                    //reshuffle();
 }
 
   //tie
@@ -178,6 +187,7 @@ var checkWinner = function () {
           els.wagerDisplay = 0;
           $("#chipCount").html("Chip Count :  " + els.chipDisplay);
           $("#wager").html("Wager :  " + els.wagerDisplay);
+                    //reshuffle();
 }
 
 //looses
@@ -186,13 +196,14 @@ var checkWinner = function () {
               alert("Oh No! You Lost. Loan Shark Tony Broke Your Legs. Here's the Gambling Addiction Hotline: 1-800-522-4700.");
               els.wagerDisplay = 0;
               $("#wager").html("Wager: " + els.wagerDisplay);
+                  //reshuffle();
 }
           else if (els.chipDisplay >= 0) {
                 alert("Oh No! You Lost. Play Another Hand.");
                 els.wagerDisplay = 0;
                 $("#wager").html("Wager: " + els.wagerDisplay);
-}
-}};
+                    //reshuffle();
+}}};
 
 //Check Bust
 var checkBust = function () {
@@ -200,11 +211,14 @@ var checkBust = function () {
       if (els.chipDisplay < 0) {
             alert("Oh No! You Bust. Loan Shark Tony Broke Your Legs. Here's the Gambling Addiction Hotline: 1-800-522-4700.");
             els.wagerDisplay = 0;
-            $("#wager").html("Wager: " + els.wagerDisplay);}
+            $("#wager").html("Wager: " + els.wagerDisplay);
+                //reshuffle();
+}
       else if (els.chipDisplay >= 0) {
             alert("Oh No! You Bust. Play Another Hand.");
             els.wagerDisplay = 0;
             $("#wager").html("Wager: " + els.wagerDisplay);
+                //reshuffle();
 }}};
 
 //Display first four "cards" and their totals
@@ -231,29 +245,19 @@ var deal = function () {
 
 
   //  4. As a player, I should be able to expect the cards dealt to be randomized each hand so that I can have a new experience each hand
-   //
+
   //  5. As a player, I should be able to expect the same cards won't be dealt more than once per hand so that we don't end up with five aces on the table
-   //
+
   //  6. As a player, I should be able to expect the value of Ace fluctuate between 1 and 11 so that I don't needlessly exceed 21
-   //
+
   //  7. As a player, I should be able to expect the dealer to display one card and hide the other so that there's an element of surprise
-   //
-  //  8. As a player, I should be able to expect the dealer to follow standard protocol: hit when under 17 / stay when 17 or over so that I can play by the same set of rules as in a casino
-   //
+
   //  9. As a player, I should be able to click a button to hit so that I can indicate I want another card
-   //
+
   //  10. As a player, I should be able to see my additional card so that I can decide if I want to hit or stay
-   //
-  //  11. As a player, I should be able to click a button to stay so that I can indicate it is the dealer's move
-   //
-  //  12. As a player, I should be able to expect if I receive 21 straight away, I receive 1.5 payout so that it reflects real life casino rules
-   //
-  //  13. As a player, I should be able to expect whichever party has the highest number 21 or under wins
-   //
   //  14. As a player, I should be able to expect my wager to be returned in the event of a tie so that I can have my bet returned to my chip count
-   //
-  //  15. As a player, I should be able to see all the cards after my turn so that I understand why I won/lost
-   //
+
+
   //  16. As a player, I should be able to hit a button to allow a new round to be dealt
 
 

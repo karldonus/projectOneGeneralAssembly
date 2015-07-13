@@ -20,9 +20,9 @@ h1 {
   color: lemonchiffon;
   font-size: 2em;
   line-height: 2em;
-  margin-bottom: 1em;
+  margin-bottom: .5em;
   text-align: center;
-  text-shadow: 0 0 15px #FF0000;  
+  text-shadow: 0 0 15px #FF0000;
 }
 
 ul {
@@ -75,7 +75,7 @@ ul {
   border: .8em solid black;
   border-radius: 1em;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 1em;
   min-height: 500px;
   width: 80%;
   text-align: center;
