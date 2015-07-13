@@ -1,82 +1,123 @@
-$(document).ready ( function() {
+// $(document).ready ( function() {
    alert("Welcome to the General Assembly Casino and Resort. We hope you enjoy your stay!");
-
+var practiceArray = [1, 2, 3, 4, 5];
 //Special Object For Deck
-var deck = {
-        //Spades
-        s2 : 2,
-        s3 : 3,
-        s4 : 4,
-        s5 : 5,
-        s6 : 6,
-        s7 : 7,
-        s8 : 8,
-        s9 : 9,
-        s10: 10,
-        sj : 10,
-        sq : 10,
-        sk : 10,
-        sa : 11,
-        //Hearts
-        h2 : 2,
-        h3 : 3,
-        h4 : 4,
-        h5 : 5,
-        h6 : 6,
-        h7 : 7,
-        h8 : 8,
-        h9 : 9,
-        h10: 10,
-        hj : 10,
-        hq : 10,
-        hk : 10,
-        ha : 11,
 
-        //Diamonds
-        d2 : 2,
-        d3 : 3,
-        d4 : 4,
-        d5 : 5,
-        d6 : 6,
-        d7 : 7,
-        d8 : 8,
-        d9 : 9,
-        d10: 10,
-        dj : 10,
-        dq : 10,
-        dk : 10,
-        da : 11,
-        //Clubs
-        c2 : 2,
-        c3 : 3,
-        c4 : 4,
-        c5 : 5,
-        c6 : 6,
-        c7 : 7,
-        c8 : 8,
-        c9 : 9,
-        c10: 10,
-        cj : 10,
-        cq : 10,
-        ck : 10,
-        ca : 11,
-};
+var cardNumArray = [2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11];
+var cardFaceArray =["2 of Hearts","3 of Hearts","4 of Hearts","5 of Hearts", "6 of Hearts", "7 of Hearts", "8 of Hearts", "9 of Hearts", "10 of Hearts", "Jack of Hearts", "Queen of Hearts", "King of Hearts", "Ace of Hearts","2 of Clubs","3 of Clubs","4 of Clubs","5 of Clubs", "6 of Clubs", "7 of Clubs", "8 of Clubs", "9 of Clubs", "10 of Clubs", "Jack of Clubs", "Queen of Clubs", "King of Clubs", "Ace of Clubs", "2 of Spades","3 of Spades","4 of Spades","5 of Spades", "6 of Spades", "7 of Spades", "8 of Spades", "9 of Spades", "10 of Spades", "Jack of Spades", "Queen of Spades", "King of Spades", "Ace of Spades", "2 of Diamonds","3 of Diamonds","4 of Diamonds","5 of Diamonds", "6 of Diamonds", "7 of Diamonds", "8 of Diamonds", "9 of Diamonds", "10 of Diamonds", "Jack of Diamonds", "Queen of Diamonds", "King of Diamonds", "Ace of Diamonds"];
+var shuffleNumArray = [];
+var shuffleFaceArray = [];
+
+function shuffle(cardFaceArray) {
+  var copy = [], n = 52, i;
+
+  // While there remain elements to shuffle…
+  while (n) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * 52);
+
+    // If not already shuffled, move it to the new array.
+    if (i in cardNumArray) {
+      shuffleNumArray.push(cardNumArray[i]);
+      // shuffleFaceArray.push(cardFaceArray[i]);
+      delete cardNumArray[i];
+      // delete cardFaceArray[i];
+      n--;
+    }
+  }
+
+  return shuffleNumArray;
+}
+
+
+// var deck = {
+//         //Spades
+//         s2 : 2,
+//         s3 : 3,
+//         s4 : 4,
+//         s5 : 5,
+//         s6 : 6,
+//         s7 : 7,
+//         s8 : 8,
+//         s9 : 9,
+//         s10: 10,
+//         sj : 10,
+//         sq : 10,
+//         sk : 10,
+//         sa : 11,
+//         //Hearts
+//         h2 : 2,
+//         h3 : 3,
+//         h4 : 4,
+//         h5 : 5,
+//         h6 : 6,
+//         h7 : 7,
+//         h8 : 8,
+//         h9 : 9,
+//         h10: 10,
+//         hj : 10,
+//         hq : 10,
+//         hk : 10,
+//         ha : 11,
+//
+//         //Diamonds
+//         d2 : 2,
+//         d3 : 3,
+//         d4 : 4,
+//         d5 : 5,
+//         d6 : 6,
+//         d7 : 7,
+//         d8 : 8,
+//         d9 : 9,
+//         d10: 10,
+//         dj : 10,
+//         dq : 10,
+//         dk : 10,
+//         da : 11,
+//         //Clubs
+//         c2 : 2,
+//         c3 : 3,
+//         c4 : 4,
+//         c5 : 5,
+//         c6 : 6,
+//         c7 : 7,
+//         c8 : 8,
+//         c9 : 9,
+//         c10: 10,
+//         cj : 10,
+//         cq : 10,
+//         ck : 10,
+//         ca : 11,
+// };
 
 //Global Object Storage
 var els = {
         chipDisplay    : 200,
+        dealerTotal    : 0,
         wagerDisplay   : 0,
         dealerCardCount: 2,
         playerCardCount: 2,
         playerTotal    : 0,
-        dealerTotal    : 0,
+
 };
 
-//Trying to Resolve Chrome Console Issue
 var checker = function () {
   console.log("hello");
 };
-console.log(typeof (els.chipDisplay));
+checker();
+//Ace Function
+// var acePlayerCalc = function () {
+//   if (els.playerTotal > 21) {
+//     deck.ca = 1;
+//     deck.sa = 1;
+//     deck.ha = 1;
+//     deck.da = 1;
+//     calcPlayerTotal();
+//     console.log(els.playerTotal);
+//     console.log(deck.ca);
+//   }
+// };
 
 //Loan Shark Mod
 var loanShark = function () {
@@ -122,8 +163,9 @@ $("#bet").on("click", function(e) {
 $("#hit").on("click", function(e){
     if (els.wagerDisplay !== 0) {
           $(".playerSpace").append("<div></div>");
-          $(".playerSpace").children().eq(els.playerCardCount).html(deck.c5);
+          $(".playerSpace").children().eq(els.playerCardCount).html(deck.ha);
           calcPlayerTotal();
+          acePlayerCalc();
               $(".playerHand").children().eq(0).html("Player Total :  " + els.playerTotal);
           checkBust();
           els.playerCardCount ++;
@@ -132,6 +174,7 @@ $("#hit").on("click", function(e){
 
 //Stay Function
 $("#stay").on("click", function(e){
+
     if (els.wagerDisplay !== 0) {
           $(".dealerSpace").children().eq(0).html(deck.c9);
           calcDealerVisibleTotal();
@@ -183,7 +226,7 @@ var checkWinner = function () {
   //tie
     else if (els.playerTotal <= 21 && els.playerTotal === els.dealerTotal) {
           alert("A tie! Play Another Hand.");
-          els.chipDisplay  = els.chipDisplay + els.wagerDisplay;
+          els.chipDisplay  = els.chipDisplay + parseInt(els.wagerDisplay);
           els.wagerDisplay = 0;
           $("#chipCount").html("Chip Count :  " + els.chipDisplay);
           $("#wager").html("Wager :  " + els.wagerDisplay);
@@ -225,9 +268,9 @@ var checkBust = function () {
 var deal = function () {
     //Player Dealt -- Need to go back in later to replace deck.ca/etc with randm
     $(".playerSpace").append("<div></div>");
-    $(".playerSpace").children().eq(0).html(deck.c3);
+    $(".playerSpace").children().eq(0).html(deck.ca);
     $(".playerSpace").append("<div></div>");
-    $(".playerSpace").children().eq(1).html(deck.c2);
+    $(".playerSpace").children().eq(1).html(deck.c9);
     $(".playerHand").append("<div></div>");
         calcPlayerTotal();
             $(".playerHand").children().eq(0).html("Player Total :  " + els.playerTotal);
@@ -235,7 +278,7 @@ var deal = function () {
     $(".dealerSpace").append("<div></div>");
     $(".dealerSpace").children().eq(0).html("???");
     $(".dealerSpace").append("<div></div>");
-    $(".dealerSpace").children().eq(1).html(deck.h4);
+    $(".dealerSpace").children().eq(1).html(deck.h10);
     $(".dealerHand").append("<div></div>");
         calcDealerTotal();
             $(".dealerHand").children().eq(0).html("Dealer Total Shown :  " + els.dealerTotal);
@@ -262,4 +305,4 @@ var deal = function () {
 
 
 
-});
+// });
