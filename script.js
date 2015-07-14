@@ -41,22 +41,15 @@ var loanShark = function () {
 //Calc Player Total
 var calcPlayerTotal = function () {
        els.playerTotal = 0;
-       for (var i = 0; i < $(".playerSpace").children().length; i++) {
-           els.playerTotal = els.playerTotal + parseInt($(".playerSpace").children().eq(i).text());
+       for (var i = 0; i < $(".playerHidden").children().length; i++) {
+           els.playerTotal = els.playerTotal + parseInt($(".playerHidden").children().eq(i).text());
 }};
 
 //Calc Dealer Total
 var calcDealerTotal = function () {
        els.dealerTotal = 0;
-       for (var i = 1; i < $(".dealerSpace").children().length; i++) {
-           els.dealerTotal = els.dealerTotal + parseInt($(".dealerSpace").children().eq(i).text());
-}};
-
-//Calc Dealer Visible Total
-var calcDealerVisibleTotal = function () {
-       els.dealerTotal = 0;
-       for (var i = 0; i < $(".dealerSpace").children().length; i++) {
-           els.dealerTotal = els.dealerTotal + parseInt($(".dealerSpace").children().eq(i).text());
+       for (var i = 0; i < $(".dealerHidden").children().length; i++) {
+           els.dealerTotal = els.dealerTotal + parseInt($(".dealerHidden").children().eq(i).text());
 }};
 
 //Bet Function
@@ -74,28 +67,42 @@ $("#bet").on("click", function(e) {
 //Hit Function
 $("#hit").on("click", function(e){
     if (els.wagerDisplay !== 0) {
-          $(".playerSpace").append("<div></div>");
-          $(".playerSpace").children().eq(els.playerCardCount).html(deckNum[3][0]);
+      $(".playerHand").prepend("<div></div>");
+      $(".playerHand").children().eq(0).html(deckNum[3][0]);
+      $(".playerHidden").prepend("<div></div>");
+      $(".playerHidden").children().eq(0).html(deckNum[3][1]);
+
           calcPlayerTotal();
           // acePlayerCalc();
-              $(".playerHand").children().eq(0).html("Player Total :  " + els.playerTotal);
+              $(".playerTitle").children().eq(0).html("Player's Hand:  " + els.playerTotal);
           checkBust();
           els.playerCardCount ++;
     }
 });
 
+// $(".playerSpace").append("<div></div>");
+// $(".playerSpace").children().eq(1).html(deckNum[1][0]);
+// $(".playerHidden").append("<div></div>");
+// $(".playerHidden").children().eq(1).html(deckNum[1][1]);
+
 //Stay Function
 $("#stay").on("click", function(e){
 
     if (els.wagerDisplay !== 0) {
-          $(".dealerSpace").children().eq(0).html(deckNum[4][0]);
-          calcDealerVisibleTotal();
+          $(".dealerHand").children().eq(0).html(deckNum[4][0]);
+          $(".dealerHidden").prepend("<div></div>");
+          $(".dealerHidden").children().eq(0).html(deckNum[4][1]);
+
+          calcDealerTotal();
               while (els.dealerTotal <= 16) {
-                  $(".dealerSpace").append("<div></div>");
-                  $(".dealerSpace").children().eq(els.dealerCardCount).html(deckNum[5][0]);
-                  calcDealerVisibleTotal();
+                  $(".dealerHand").prepend("<div></div>");
+                  $(".dealerHand").children().eq(0).html(deckNum[5][0]);
+                  $(".dealerHidden").prepend("<div></div>");
+                  $(".dealerHidden").children().eq(0).html(deckNum[5][1]);
+
+                  calcDealerTotal();
 }
-          $(".dealerHand").children().eq(0).html("Dealer Total Shown :  " + els.dealerTotal);
+          $(".dealerTitle").children().eq(0).html("Dealer's Hand: " + els.dealerTotal);
           checkWinner();
     }
 });
@@ -181,22 +188,30 @@ var deal = function () {
     //shuffle first
     shuffle(deckNum);
     //Player Dealt -- Need to go back in later to replace deck.ca/etc with randm
-    $(".playerSpace").append("<div></div>");
-    $(".playerSpace").children().eq(0).html(deckNum[0][0]);
-    $(".playerSpace").append("<div></div>");
-    $(".playerSpace").children().eq(1).html(deckNum[1][0]);
-    $(".playerHand").append("<div></div>");
+    $(".playerHand").prepend("<div></div>");
+    $(".playerHand").children().eq(0).html(deckNum[0][0]);
+    $(".playerHidden").prepend("<div></div>");
+    $(".playerHidden").children().eq(0).html(deckNum[0][1]);
+
+    $(".playerHand").prepend("<div></div>");
+    $(".playerHand").children().eq(0).html(deckNum[1][0]);
+    $(".playerHidden").prepend("<div></div>");
+    $(".playerHidden").children().eq(0).html(deckNum[1][1]);
+
         calcPlayerTotal();
-            $(".playerHand").children().eq(0).html("Player Total :  " + els.playerTotal);
+            $(".playerTitle").children().eq(0).html("Player's Hand: " + els.playerTotal);
     //Dealer Dealt -- Need to go back in later to replace ? AND deck.h2 with randm
-    $(".dealerSpace").append("<div></div>");
-    $(".dealerSpace").children().eq(0).html("???");
-    $(".dealerSpace").append("<div></div>");
-    $(".dealerSpace").children().eq(1).html(deckNum[2][0]);
-    $(".dealerHand").append("<div></div>");
+    $(".dealerHand").prepend("<div></div>");
+    $(".dealerHand").children().eq(0).html(deckNum[2][0]);
+    $(".dealerHidden").prepend("<div></div>");
+    $(".dealerHidden").children().eq(0).html(deckNum[2][1]);
+
+    $(".dealerHand").prepend("<div></div>");
+    $(".dealerHand").children().eq(0).html("???");
+
         calcDealerTotal();
-            $(".dealerHand").children().eq(0).html("Dealer Total Shown :  " + els.dealerTotal);
-    blackJack();
+            $(".dealerTitle").children().eq(0).html("Dealer's Hand: " + els.dealerTotal);
+                blackJack();
 };
 
   //  6. As a player, I should be able to expect the value of Ace fluctuate between 1 and 11 so that I don't needlessly exceed 21

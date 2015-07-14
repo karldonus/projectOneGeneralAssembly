@@ -29,6 +29,14 @@ ul {
     list-style: none;
 }
 
+.playerHidden {
+  display: none;
+}
+
+.dealerHidden {
+  display: none;
+}
+
 .site-container {
   width: 100%;
 }
@@ -82,7 +90,7 @@ ul {
   text-shadow: 0 0 1px white;
 }
 
-.dealerSpace {
+.dealerHand {
   background-image: url(greenFelt.jpg);
   border: .5em solid white;
   border-radius: .5em;
@@ -92,7 +100,7 @@ ul {
   text-shadow: 0 0 1px white;
 }
 
-.playerSpace {
+.playerHand {
   background-image: url(greenFelt.jpg);
   border: .5em solid red;
   border-radius: .5em;
