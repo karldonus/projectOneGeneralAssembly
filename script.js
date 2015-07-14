@@ -26,8 +26,7 @@ var els = {
         chipDisplay    : 200,
         dealerTotal    : 0,
         wagerDisplay   : 0,
-        dealerCardCount: 2,
-        playerCardCount: 2,
+        cardCount      : 1,
         playerTotal    : 0,
         playerAceCheck : [],
         dealerAceCheck : [],
@@ -70,35 +69,39 @@ $("#bet").on("click", function(e) {
 $("#hit").on("click", function(e){
     if (els.wagerDisplay !== 0) {
       $(".playerHand").prepend("<div></div>");
-      $(".playerHand").children().eq(0).html(deckNum[3][0]);
+      $(".playerHand").children().eq(0).html(deckNum[els.cardCount][0]);
       $(".playerHidden").prepend("<div></div>");
-      $(".playerHidden").children().eq(0).html(deckNum[3][1]);
-      els.playerAceCheck.push(deckNum[3][0].slice(0,3));
+      $(".playerHidden").children().eq(0).html(deckNum[els.cardCount][1]);
+      els.playerAceCheck.push(deckNum[els.cardCount][0].slice(0,3));
 
           calcPlayerTotal();
           switchPlayerAce();
               $(".playerTitle").html("Player's Hand: " + els.playerTotal.toString());
           checkBust();
-          els.playerCardCount ++;
+          els.cardCount ++;
     }
 });
 
-//Stay Function
+//Stay Function aka Dealer Turn
 $("#stay").on("click", function(e){
 
     if (els.wagerDisplay !== 0) {
-          $(".dealerHand").children().eq(0).html(deckNum[4][0]);
+          $(".dealerHand").children().eq(0).html(deckNum[els.cardCount][0]);
           $(".dealerHidden").prepend("<div></div>");
-          $(".dealerHidden").children().eq(0).html(deckNum[4][1]);
+          $(".dealerHidden").children().eq(0).html(deckNum[els.cardCount][1]);
+          els.dealerAceCheck.push(deckNum[els.cardCount][0].slice(0,3));
+          els.cardCount ++;
 
           calcDealerTotal();
               while (els.dealerTotal <= 16) {
                   $(".dealerHand").prepend("<div></div>");
-                  $(".dealerHand").children().eq(0).html(deckNum[5][0]);
+                  $(".dealerHand").children().eq(0).html(deckNum[els.cardCount][0]);
                   $(".dealerHidden").prepend("<div></div>");
-                  $(".dealerHidden").children().eq(0).html(deckNum[5][1]);
-
+                  $(".dealerHidden").children().eq(0).html(deckNum[els.cardCount][1]);
+                  els.dealerAceCheck.push(deckNum[els.cardCount][0].slice(0,3));
                   calcDealerTotal();
+                  switchDealerAce();
+
 }
             $(".dealerTitle").html("Dealer's Hand: " + els.dealerTotal.toString());
           checkWinner();
@@ -167,11 +170,14 @@ var checkWinner = function () {
 
 //Check Player Ace
 var switchPlayerAce = function () {
-    if (els.playerTotal > 21) {
-          if ($.inArray("Ace", els.checkPlayerAce) !== 0) {
+    if (els.playerTotal > 21 && $.inArray("Ace", els.checkPlayerAce) !== 0) {
                 els.playerTotal = els.playerTotal - 10;
-}}};
+}};
 
+var switchDealerAce = function () {
+    if (els.dealerTotal > 21 && $.inArray("Ace", els.checkDealerAce) !== 0) {
+                els.dealerTotal = els.dealerTotal - 10;
+}};
 
 //Check Bust
 var checkBust = function () {
@@ -200,21 +206,24 @@ var deal = function () {
     $(".playerHidden").prepend("<div></div>");
     $(".playerHidden").children().eq(0).html(deckNum[0][1]);
     els.playerAceCheck.push(deckNum[0][0].slice(0,3));
+    els.cardCount ++;
 
     $(".playerHand").prepend("<div></div>");
-    $(".playerHand").children().eq(0).html(deckNum[1][0]);
+    $(".playerHand").children().eq(0).html(deckNum[els.cardCount][0]);
     $(".playerHidden").prepend("<div></div>");
-    $(".playerHidden").children().eq(0).html(deckNum[1][1]);
-    els.playerAceCheck.push(deckNum[1][0].slice(0,3));
+    $(".playerHidden").children().eq(0).html(deckNum[els.cardCount][1]);
+    els.playerAceCheck.push(deckNum[els.cardCount][0].slice(0,3));
+    els.cardCount ++;
 
         calcPlayerTotal();
             $(".playerTitle").html("Player's Hand: " + els.playerTotal.toString());
     //Dealer Dealt -- Need to go back in later to replace ? AND deck.h2 with randm
     $(".dealerHand").prepend("<div></div>");
-    $(".dealerHand").children().eq(0).html(deckNum[2][0]);
+    $(".dealerHand").children().eq(0).html(deckNum[els.cardCount][0]);
     $(".dealerHidden").prepend("<div></div>");
-    $(".dealerHidden").children().eq(0).html(deckNum[2][1]);
-    els.dealerAceCheck.push(deckNum[2][0].slice(0,3));
+    $(".dealerHidden").children().eq(0).html(deckNum[els.cardCount][1]);
+    els.dealerAceCheck.push(deckNum[els.cardCount][0].slice(0,3));
+    els.cardCount ++;
 
     $(".dealerHand").prepend("<div></div>");
     $(".dealerHand").children().eq(0).html("???");
