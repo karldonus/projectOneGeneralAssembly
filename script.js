@@ -74,16 +74,11 @@ $("#hit").on("click", function(e){
 
           calcPlayerTotal();
           // acePlayerCalc();
-              $(".playerTitle").children().eq(0).html("Player's Hand:  " + els.playerTotal);
+              $(".playerTitle").html("Player's Hand: " + els.playerTotal.toString());
           checkBust();
           els.playerCardCount ++;
     }
 });
-
-// $(".playerSpace").append("<div></div>");
-// $(".playerSpace").children().eq(1).html(deckNum[1][0]);
-// $(".playerHidden").append("<div></div>");
-// $(".playerHidden").children().eq(1).html(deckNum[1][1]);
 
 //Stay Function
 $("#stay").on("click", function(e){
@@ -102,7 +97,7 @@ $("#stay").on("click", function(e){
 
                   calcDealerTotal();
 }
-          $(".dealerTitle").children().eq(0).html("Dealer's Hand: " + els.dealerTotal);
+            $(".dealerTitle").html("Dealer's Hand: " + els.dealerTotal.toString());
           checkWinner();
     }
 });
@@ -199,7 +194,7 @@ var deal = function () {
     $(".playerHidden").children().eq(0).html(deckNum[1][1]);
 
         calcPlayerTotal();
-            $(".playerTitle").children().eq(0).html("Player's Hand: " + els.playerTotal);
+            $(".playerTitle").html("Player's Hand: " + els.playerTotal.toString());
     //Dealer Dealt -- Need to go back in later to replace ? AND deck.h2 with randm
     $(".dealerHand").prepend("<div></div>");
     $(".dealerHand").children().eq(0).html(deckNum[2][0]);
@@ -210,7 +205,7 @@ var deal = function () {
     $(".dealerHand").children().eq(0).html("???");
 
         calcDealerTotal();
-            $(".dealerTitle").children().eq(0).html("Dealer's Hand: " + els.dealerTotal);
+            $(".dealerTitle").html("Dealer's Hand: " + els.dealerTotal.toString());
                 blackJack();
 };
 
