@@ -1,95 +1,25 @@
 // $(document).ready ( function() {
    alert("Welcome to the General Assembly Casino and Resort. We hope you enjoy your stay!");
-var practiceArray = [1, 2, 3, 4, 5];
-//Special Object For Deck
 
-var cardNumArray = [2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11];
-var cardFaceArray =["2 of Hearts","3 of Hearts","4 of Hearts","5 of Hearts", "6 of Hearts", "7 of Hearts", "8 of Hearts", "9 of Hearts", "10 of Hearts", "Jack of Hearts", "Queen of Hearts", "King of Hearts", "Ace of Hearts","2 of Clubs","3 of Clubs","4 of Clubs","5 of Clubs", "6 of Clubs", "7 of Clubs", "8 of Clubs", "9 of Clubs", "10 of Clubs", "Jack of Clubs", "Queen of Clubs", "King of Clubs", "Ace of Clubs", "2 of Spades","3 of Spades","4 of Spades","5 of Spades", "6 of Spades", "7 of Spades", "8 of Spades", "9 of Spades", "10 of Spades", "Jack of Spades", "Queen of Spades", "King of Spades", "Ace of Spades", "2 of Diamonds","3 of Diamonds","4 of Diamonds","5 of Diamonds", "6 of Diamonds", "7 of Diamonds", "8 of Diamonds", "9 of Diamonds", "10 of Diamonds", "Jack of Diamonds", "Queen of Diamonds", "King of Diamonds", "Ace of Diamonds"];
-var shuffleNumArray = [];
-var shuffleFaceArray = [];
+//Special Array For Deck
 
-function shuffle(cardFaceArray) {
-  var copy = [], n = 52, i;
+var deckNum = [["Two of Clubs",2],["Three of Clubs",3],["Four of Clubs",4],["Five of Clubs",5],["Six of Clubs",6],["Seven of Clubs",7],["Eight of Clubs",8],["Nine of Clubs",9],["Ten of Clubs",10],["Jack of Clubs",10],["Queen of Clubs",10],["King of Clubs",10],["Ace of Clubs",11],["Two of Hearts",2],["Three of Hearts",3],["Four of Hearts",4],["Five of Hearts",5],["Six of Hearts",6],["Seven of Hearts",7],["Eight of Hearts",8],["Nine of Hearts",9],["Ten of Hearts",10],["Jack of Hearts",10],["Queen of Hearts",10],["King of Hearts",10],["Ace of Hearts",11],["Two of Spades",2],["Three of Spades",3],["Four of Spades",4],["Five of Spades",5],["Six of Spades",6],["Seven of Spades",7],["Eight of Spades",8],["Nine of Spades",9],["Ten of Spades",10],["Jack of Spades",10],["Queen of Spades",10],["King of Spades",10],["Ace of Spades",11],["Two of Diamonds",2],["Three of Diamonds",3],["Four of Diamonds",4],["Five of Diamonds",5],["Six of Diamonds",6],["Seven of Diamonds",7],["Eight of Diamonds",8],["Nine of Diamonds",9],["Ten of Diamonds",10],["Jack of Diamonds",10],["Queen of Diamonds",10],["King of Diamonds",10],["Ace of Diamonds",11]];
 
+//Fisher Yates Method
+function shuffle(array) {
+  var m = array.length, t, i;
   // While there remain elements to shuffle…
-  while (n) {
-
+  while (m) {
     // Pick a remaining element…
-    i = Math.floor(Math.random() * 52);
-
-    // If not already shuffled, move it to the new array.
-    if (i in cardNumArray) {
-      shuffleNumArray.push(cardNumArray[i]);
-      // shuffleFaceArray.push(cardFaceArray[i]);
-      delete cardNumArray[i];
-      // delete cardFaceArray[i];
-      n--;
-    }
+    i = Math.floor(Math.random() * m--);
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
   }
-
-  return shuffleNumArray;
+  return array;
 }
 
-
-// var deck = {
-//         //Spades
-//         s2 : 2,
-//         s3 : 3,
-//         s4 : 4,
-//         s5 : 5,
-//         s6 : 6,
-//         s7 : 7,
-//         s8 : 8,
-//         s9 : 9,
-//         s10: 10,
-//         sj : 10,
-//         sq : 10,
-//         sk : 10,
-//         sa : 11,
-//         //Hearts
-//         h2 : 2,
-//         h3 : 3,
-//         h4 : 4,
-//         h5 : 5,
-//         h6 : 6,
-//         h7 : 7,
-//         h8 : 8,
-//         h9 : 9,
-//         h10: 10,
-//         hj : 10,
-//         hq : 10,
-//         hk : 10,
-//         ha : 11,
-//
-//         //Diamonds
-//         d2 : 2,
-//         d3 : 3,
-//         d4 : 4,
-//         d5 : 5,
-//         d6 : 6,
-//         d7 : 7,
-//         d8 : 8,
-//         d9 : 9,
-//         d10: 10,
-//         dj : 10,
-//         dq : 10,
-//         dk : 10,
-//         da : 11,
-//         //Clubs
-//         c2 : 2,
-//         c3 : 3,
-//         c4 : 4,
-//         c5 : 5,
-//         c6 : 6,
-//         c7 : 7,
-//         c8 : 8,
-//         c9 : 9,
-//         c10: 10,
-//         cj : 10,
-//         cq : 10,
-//         ck : 10,
-//         ca : 11,
-// };
 
 //Global Object Storage
 var els = {
@@ -99,29 +29,11 @@ var els = {
         dealerCardCount: 2,
         playerCardCount: 2,
         playerTotal    : 0,
-
 };
-
-var checker = function () {
-  console.log("hello");
-};
-checker();
-//Ace Function
-// var acePlayerCalc = function () {
-//   if (els.playerTotal > 21) {
-//     deck.ca = 1;
-//     deck.sa = 1;
-//     deck.ha = 1;
-//     deck.da = 1;
-//     calcPlayerTotal();
-//     console.log(els.playerTotal);
-//     console.log(deck.ca);
-//   }
-// };
 
 //Loan Shark Mod
 var loanShark = function () {
-    if (els.wagerDisplay > els.chipDisplay) {
+    if (els.chipDisplay < 0) {
         alert("Oh no! It looks like you're trying to bet more chips than you have...don't worry my friend! Tony the Loan Shark would be more than happy to provide you with a short-term loan. Just don't lose! ");
     }
 };
@@ -163,9 +75,9 @@ $("#bet").on("click", function(e) {
 $("#hit").on("click", function(e){
     if (els.wagerDisplay !== 0) {
           $(".playerSpace").append("<div></div>");
-          $(".playerSpace").children().eq(els.playerCardCount).html(deck.ha);
+          $(".playerSpace").children().eq(els.playerCardCount).html(deckNum[3][0]);
           calcPlayerTotal();
-          acePlayerCalc();
+          // acePlayerCalc();
               $(".playerHand").children().eq(0).html("Player Total :  " + els.playerTotal);
           checkBust();
           els.playerCardCount ++;
@@ -176,11 +88,11 @@ $("#hit").on("click", function(e){
 $("#stay").on("click", function(e){
 
     if (els.wagerDisplay !== 0) {
-          $(".dealerSpace").children().eq(0).html(deck.c9);
+          $(".dealerSpace").children().eq(0).html(deckNum[4][0]);
           calcDealerVisibleTotal();
               while (els.dealerTotal <= 16) {
                   $(".dealerSpace").append("<div></div>");
-                  $(".dealerSpace").children().eq(els.dealerCardCount).html(deck.c7);
+                  $(".dealerSpace").children().eq(els.dealerCardCount).html(deckNum[5][0]);
                   calcDealerVisibleTotal();
 }
           $(".dealerHand").children().eq(0).html("Dealer Total Shown :  " + els.dealerTotal);
@@ -266,11 +178,13 @@ var checkBust = function () {
 
 //Display first four "cards" and their totals
 var deal = function () {
+    //shuffle first
+    shuffle(deckNum);
     //Player Dealt -- Need to go back in later to replace deck.ca/etc with randm
     $(".playerSpace").append("<div></div>");
-    $(".playerSpace").children().eq(0).html(deck.ca);
+    $(".playerSpace").children().eq(0).html(deckNum[0][0]);
     $(".playerSpace").append("<div></div>");
-    $(".playerSpace").children().eq(1).html(deck.c9);
+    $(".playerSpace").children().eq(1).html(deckNum[1][0]);
     $(".playerHand").append("<div></div>");
         calcPlayerTotal();
             $(".playerHand").children().eq(0).html("Player Total :  " + els.playerTotal);
@@ -278,31 +192,15 @@ var deal = function () {
     $(".dealerSpace").append("<div></div>");
     $(".dealerSpace").children().eq(0).html("???");
     $(".dealerSpace").append("<div></div>");
-    $(".dealerSpace").children().eq(1).html(deck.h10);
+    $(".dealerSpace").children().eq(1).html(deckNum[2][0]);
     $(".dealerHand").append("<div></div>");
         calcDealerTotal();
             $(".dealerHand").children().eq(0).html("Dealer Total Shown :  " + els.dealerTotal);
     blackJack();
 };
 
-
-
-  //  4. As a player, I should be able to expect the cards dealt to be randomized each hand so that I can have a new experience each hand
-
-  //  5. As a player, I should be able to expect the same cards won't be dealt more than once per hand so that we don't end up with five aces on the table
-
   //  6. As a player, I should be able to expect the value of Ace fluctuate between 1 and 11 so that I don't needlessly exceed 21
 
-  //  7. As a player, I should be able to expect the dealer to display one card and hide the other so that there's an element of surprise
-
-  //  9. As a player, I should be able to click a button to hit so that I can indicate I want another card
-
-  //  10. As a player, I should be able to see my additional card so that I can decide if I want to hit or stay
-  //  14. As a player, I should be able to expect my wager to be returned in the event of a tie so that I can have my bet returned to my chip count
-
-
   //  16. As a player, I should be able to hit a button to allow a new round to be dealt
-
-
 
 // });
