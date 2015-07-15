@@ -26,7 +26,7 @@ var els = {
         chipDisplay    : 200,
         dealerTotal    : 0,
         wagerDisplay   : 0,
-        cardCount      : 1,
+        cardCount      : 0,
         playerTotal    : 0,
         playerAceCheck : [],
         dealerAceCheck : [],
@@ -101,7 +101,7 @@ $("#stay").on("click", function(e){
                   els.dealerAceCheck.push(deckNum[els.cardCount][0].slice(0,3));
                   calcDealerTotal();
                   switchDealerAce();
-
+                  els.cardCount ++;
 }
             $(".dealerTitle").html("Dealer's Hand: " + els.dealerTotal.toString());
           checkWinner();
@@ -170,12 +170,12 @@ var checkWinner = function () {
 
 //Check Player Ace
 var switchPlayerAce = function () {
-    if (els.playerTotal > 21 && $.inArray("Ace", els.checkPlayerAce) !== 0) {
-                els.playerTotal = els.playerTotal - 10;
+    if (els.playerTotal > 21 && $.inArray("Ace", els.playerAceCheck) !== -1) {
+              els.playerTotal = els.playerTotal - 10;
 }};
 
 var switchDealerAce = function () {
-    if (els.dealerTotal > 21 && $.inArray("Ace", els.checkDealerAce) !== 0) {
+    if (els.dealerTotal > 21 && $.inArray("Ace", els.dealerAceCheck) !== -1) {
                 els.dealerTotal = els.dealerTotal - 10;
 }};
 
@@ -233,7 +233,6 @@ var deal = function () {
                 blackJack();
 };
 
-  //  6. As a player, I should be able to expect the value of Ace fluctuate between 1 and 11 so that I don't needlessly exceed 21
 
   //  16. As a player, I should be able to hit a button to allow a new round to be dealt
 
