@@ -10,7 +10,7 @@
   <div class="site-container">
     <header class="site-header">
       <h1>Blackjack</h1>
-      <nav class="site-nav">
+      <nav class="site-nav jelly">
         <ul class="nav-list">
           <li id="wager">Wager :  0</li>
           <li id="chipCount">Chip Count :  200</li>
@@ -18,12 +18,12 @@
       </nav>
     </header>
 
-    <main class="tableSurface">
-      <div h2 class="dealerTitle">Dealer's Hand:</div>
+    <main class="tableSurface jelly">
+      <div class="dealerTitle">Dealer's Hand:</div>
       <div class="dealerSpace"></div>
           <div class="dealerHand"></div>
               <div class="dealerHidden"></div>
-      <div h2 class="playerTitle">Player's Hand:</div>
+      <div class="playerTitle">Player's Hand:</div>
       <div class="playerSpace"></div>
           <div class="playerHand"></div>
               <div class="playerHidden"></div>
@@ -33,6 +33,7 @@
               <input id="bet" type="button" value="Bet" />
               <input id="hit" type="button" value="Hit" />
               <input id="stay" type="button" value="Stay" />
+              <input id="reset" type="button" value="New Hand" />
       </div>
 
     </main>

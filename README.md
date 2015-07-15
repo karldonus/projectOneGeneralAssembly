@@ -3,12 +3,28 @@
 Objective:
 Blackjack
 
-Make a one-player game where the computer deals and the user plays according to the rules of blackjack.
+Welcome to Donus Donut's GA Project One
+================================================
+Technologies Used:
+JS, CSS, HTML
 
-Bonus:
+Approach taken:
++Began with creating a laundry list of user stories (see below).
++Next, I constructed a skeleton HTML and CSS document with basic styling. Used combination of flex-box and fixed elements.
++In terms of JS, I relied on the user stories to compartmentalize functionality to make independent systems. Admittedly, this didn't make for the DRYest of code, but a post-MVP objective is to refactor.
++I decided to go after lowest-hanging fruit first - the betting system. Once that was created, I leapfrogged to game mechanics, rather than constructing the deck. Testing no-more than two new or modified lines of code at a time, I slowly constructed a complex intertwined game system.
++Eventually, I hit a roadblock (the ace function), that required me to build the deck. After many iterations, I opted for an array within an array for the deck. An object's unordered list nature made it difficult to find a way to sort it effectively. For a period, I was playing with two corresponding arrays, but that didn't conform to the Yates Fisher shuffle methodology.
 
-Add multi-player support
-Add Computer AI
+Installation instructions:
++For maximum enjoyment, please ensure your web browser and extensions are up-to-date.
+
+Unsolved Problems:
++While the Ace Function is robust in 99.9% of cases. It may not function properly if 2 or more Aces are dealt when hitting. Since our objective is an MVP, I put debugging this in the ice-box.
++Ideally, a new-hand wouldn't refresh the page. I opted for the quick and dirty method to achieve MVP. However, I know I'd rely on .empty() to ensure retention of chip count, but reset of all other arrays, classes appended, etc.
++No images for MVP, which is OK...but the silver or gold would certainly include images in-lieu of cards. I was having trouble with syntax when adding an image source to an array, but I'm confident I'll have that resolved in a short while.
++Code is WET. OK for MVP, but I'm confident I could refactor the JS file down to sub 150 lines with my existing JS knowledge.
+
+
 
 ================================================
 
